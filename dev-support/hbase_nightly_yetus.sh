@@ -85,6 +85,10 @@ if [[ -n "${HADOOP_PROFILE}" ]]; then
   YETUS_ARGS=("--hadoop-profile=${HADOOP_PROFILE}" "${YETUS_ARGS[@]}")
 fi
 
+if [[ -n "${SKIP_ERROR_PRONE}" ]]; then
+  YETUS_ARGS=("--skip-errorprone" "${YETUS_ARGS[@]}")
+fi
+
 if [[ true == "${DEBUG}" ]]; then
   YETUS_ARGS=("--debug" "${YETUS_ARGS[@]}")
 fi
