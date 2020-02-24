@@ -103,7 +103,7 @@ if [[ true !=  "${USE_YETUS_PRERELEASE}" ]]; then
   TESTPATCHBIN="${WORKSPACE}/yetus-${YETUS_RELEASE}/bin/test-patch"
 else
   YETUS_ARGS=("--shelldocs=${WORKSPACE}/yetus-git/shelldocs/shelldocs.py" "${YETUS_ARGS[@]}")
-  TESTPATCHBIN="${WORKSPACE}/yetus-git/precommit/test-patch.sh"
+  TESTPATCHBIN="${WORKSPACE}/yetus-git/precommit/src/main/shell/test-patch.sh"
 fi
 echo "Launching yetus with command line:"
 echo "${TESTPATCHBIN} ${YETUS_ARGS[*]}"
