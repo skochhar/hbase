@@ -116,6 +116,13 @@ public class MasterQuotasObserver implements MasterCoprocessor, MasterObserver {
         QuotaSettings settings = QuotaSettingsFactory.removeNamespaceSpaceLimit(namespace);
         try (Admin admin = conn.getAdmin()) {
           admin.setQuota(settings);
+          TableName[] tableArray = admin.listTableNamesByNamespace(namespace);
+          for (TableName tableName: tableArray) {
+            if (QuotaUtil.getTableQuota(conn, tableName) == null) {
+              settings = QuotaSettingsFactory.removeTableSpaceLimit(tableName);
+              admin.setQuota(settings);
+            }
+          }
         }
       }
       if (quotas.hasThrottle()) {
